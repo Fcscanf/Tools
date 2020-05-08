@@ -34,11 +34,6 @@ public class CountNoCommitStudent {
     public static final String dirPath = "D:\\LinkSpace\\Work\\WorkFiles\\B软件161\\B软件161-91job就业调查截图";
 
     /**
-     * 文件名的分隔符
-     */
-    public static final String splitString = "-";
-
-    /**
      * 学生名单集合
      */
     private static final List<Student> studentList = new ArrayList<>();
@@ -121,7 +116,12 @@ public class CountNoCommitStudent {
             String fileName = f.getName().toString();
             int i = fileName.lastIndexOf(".");
             String commitFileName = fileName.substring(0, i);
-            String[] splitFileName = commitFileName.split(splitString);
+            String[] splitFileName = new String[10];
+            if (commitFileName.contains("-")) {
+                splitFileName = LongStringToArrayUtil.stringSplit(commitFileName, "-");
+            } else {
+                splitFileName = LongStringToArrayUtil.stringSplit(commitFileName, "_");
+            }
             for (String spliceFileName : splitFileName) {
                 String trimFileName = spliceFileName.trim();
                 if (trimFileName.length() == 10) {
