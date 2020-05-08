@@ -18,5 +18,6 @@ public class Student {
 
     private String studentNum;
     private String studentName;
+    private String workCompany;
 
 }
