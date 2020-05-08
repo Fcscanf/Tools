@@ -2,16 +2,12 @@ package com.fcant.tools.utils;
 
 import com.fcant.tools.bean.Student;
 import org.apache.commons.io.FileUtils;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStream;
 import java.util.*;
 
 /**
@@ -71,14 +67,14 @@ public class CountNoCommitStudent {
      */
     public static void main(String[] args) {
 
-        CountNoCommitStudent excelRead = new CountNoCommitStudent();
+        ReadExcel readExcel = new ReadExcel();
 
-        Workbook wb = excelRead.getExcel(filePath);
+        Workbook wb = readExcel.getExcel(filePath);
 
         if (wb == null)
             System.out.println("文件读入出错");
         else {
-            excelRead.getExcelData(wb);
+            getExcelData(wb);
         }
         getCommitFileStudent(dirPath, true);
         getNoCommitFileStudent();
@@ -150,44 +146,12 @@ public class CountNoCommitStudent {
     }
 
     /**
-     * 获取名单Excel
-     *
-     * @param filePath 名单Excel的文件路径
-     * @return Workbook 返回Excel的对象
-     * @author Fcant 上午 7:37 2020/5/8/0008
-     */
-    public Workbook getExcel(String filePath) {
-        Workbook wb = null;
-        File file = new File(filePath);
-        if (!file.exists()) {
-            System.out.println("文件不存在");
-            wb = null;
-        } else {
-            String fileType = filePath.substring(filePath.lastIndexOf("."));//获得后缀名
-            try {
-                InputStream is = new FileInputStream(filePath);
-                if (".xls".equals(fileType)) {
-                    wb = new HSSFWorkbook(is);
-                } else if (".xlsx".equals(fileType)) {
-                    wb = new XSSFWorkbook(is);
-                } else {
-                    System.out.println("格式不正确");
-                    wb = null;
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        return wb;
-    }
-
-    /**
      * 获取Excel中的数据内容
      *
      * @param wb Excel对象
      * @author Fcant 上午 7:38 2020/5/8/0008
      */
-    public void getExcelData(Workbook wb) {
+    public static void getExcelData(Workbook wb) {
         Sheet sheet = wb.getSheetAt(0);//读取sheet(从0计数)
         int rowNum = sheet.getLastRowNum();//读取行数(从0计数)
         for (int i = 0; i <= rowNum; i++) {
