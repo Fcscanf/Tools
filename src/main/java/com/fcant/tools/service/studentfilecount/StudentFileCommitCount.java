@@ -1,6 +1,7 @@
-package com.fcant.tools.utils;
+package com.fcant.tools.service.studentfilecount;
 
 import com.fcant.tools.bean.Student;
+import com.fcant.tools.utils.LongStringToArrayUtil;
 import org.apache.commons.io.FileUtils;
 
 import java.io.File;
@@ -30,11 +31,11 @@ public class StudentFileCommitCount extends InitLoadStudentDataInfo {
     /**
      * 对比查找的目录路径
      */
-    private static final String dirPath = "D:\\LinkSpace\\Work\\WorkFiles\\B软件161\\B软件161-91job就业调查截图";
+    private static final String dirPath = "D:\\LinkSpace\\Work\\WorkFiles\\B软件161\\Java4班B软件161毕业设计说明书";
 
     public static void main(String[] args) {
         initStudentInfo();
-        getCommitFileStudent(dirPath, false);
+        getCommitFileStudent(dirPath, true);
         getNoCommitFileStudent();
     }
 
@@ -97,7 +98,7 @@ public class StudentFileCommitCount extends InitLoadStudentDataInfo {
 
     public static void renameFileName(File f, Student student) {
         String fileType = f.getName().substring(f.getName().lastIndexOf("."));
-        String newFileName = "B软件161-" + student.getStudentNum() + "-" + student.getStudentName() + fileType;
+        String newFileName = student.getStudentNum() + "_" + student.getStudentName() + "_毕业设计说明书" + fileType;
         if (!newFileName.equals(f.getName())) {
             f.renameTo(new File(f.getParent() + "/" + newFileName));
         }

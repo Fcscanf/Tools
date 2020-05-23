@@ -1,6 +1,7 @@
-package com.fcant.tools.utils;
+package com.fcant.tools.service.studentfilecount;
 
 import com.fcant.tools.bean.Student;
+import com.fcant.tools.utils.ReadExcel;
 import lombok.Data;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
@@ -75,14 +76,19 @@ public class InitLoadStudentDataInfo {
         if (wb == null)
             System.out.println("文件读入出错");
         else {
-            Sheet sheet = wb.getSheetAt(0);//读取sheet(从0计数)
-            int rowNum = sheet.getLastRowNum();//读取行数(从0计数)
+            //读取sheet(从0计数)
+            Sheet sheet = wb.getSheetAt(0);
+            //读取行数(从0计数)
+            int rowNum = sheet.getLastRowNum();
             for (int i = 0; i <= rowNum; i++) {
-                Row row = sheet.getRow(i);//获得行
-                int colNum = row.getLastCellNum();//获得当前行的列数
+                //获得行
+                Row row = sheet.getRow(i);
+                //获得当前行的列数
+                int colNum = row.getLastCellNum();
                 Student student = new Student();
                 for (int j = 0; j < colNum; j++) {
-                    Cell cell = row.getCell(j);//获取单元格
+                    //获取单元格
+                    Cell cell = row.getCell(j);
                     if (j == 0) {
                         String stuNum = cell.toString();
                         String newNum = "1" + stuNum.substring(2, 11);
