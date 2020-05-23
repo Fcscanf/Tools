@@ -19,7 +19,7 @@ public class LongStringToArrayUtil {
      */
     public static String[] stringSplit(String longString, String byString) {
         String replaceString = longString.replace(byString, "");
-        int allocationNum = ((longString.length() - replaceString.length()) / byString.length());
+        int allocationNum = ((longString.length() - replaceString.length()) / byString.length() + 1);
         String[] ids = new String[allocationNum];
         if (longString.contains(byString)) {
             ids = longString.split(byString);
