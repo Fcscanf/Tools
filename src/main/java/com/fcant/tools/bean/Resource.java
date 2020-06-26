@@ -1,4 +1,4 @@
-package com.fcant.tools.exception7.bean;
+package com.fcant.tools.bean;
 
 /**
  * Resource

@@ -1,6 +1,6 @@
 package com.fcant.tools.exception7.trycatch7;
 
-import com.fcant.tools.exception7.bean.Resource;
+import com.fcant.tools.bean.Resource;
 
 /**
  * CloseResourceAfterJava7
